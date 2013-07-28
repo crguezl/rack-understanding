@@ -6,8 +6,15 @@ class EnvironmentOutput
 
   def call(env)
     p @app
-    return @app.call(env) unless @app.nil?
-    return [ "200", { "Content-Type" => "text/html"}, ""]
+    out = ""
+    ENV.each do |k,v|
+      out += "<li> #{k} => #{v}"
+    end
+    unless @app.nil? 
+      code, header, body = @app.call(env)
+      return [code, header, body + [out ] ] 
+    end
+    return [ "200", { "Content-Type" => "text/html"}, out ]
   end
 end
 
