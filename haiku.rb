@@ -13,7 +13,24 @@ class Haiku
 
       "Lightning flash—
       what I thought were faces
-      are plumes of pampas grass."
+      are plumes of pampas grass.",
+
+      "We are but flyspecks 
+      On that window pane of life 
+      The window cleaner!",
+
+      "Lightning flash—
+      what I thought were faces
+      are plumes of pampas grass.",
+
+      "A summer river being crossed
+      how pleasing
+      with sandals in my hands!",
+
+      "Light of the moon
+      Moves west, flowers' shadows
+      Creep eastward."
+
     ]
 
   end
