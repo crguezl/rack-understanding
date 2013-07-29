@@ -1,12 +1,3 @@
-require './my_framework'
-require './haiku'
-
-class MyApp < MyFramework
-
-  def initialize
-    get("index", :poem => Haiku.new.random)
-  end
-
-end
+require './myapp'
 
 run MyApp.new
