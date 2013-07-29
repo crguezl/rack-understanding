@@ -29,7 +29,16 @@ class Haiku
 
       "Light of the moon
       Moves west, flowers' shadows
-      Creep eastward."
+      Creep eastward.",
+
+      "Feline snap cat like
+      Actress purrs gesticulates
+      Shadow puppet growls",
+
+      "Passionate lips cold
+      Presses fingers curled tresses
+      Street corner embrace"
+
 
     ]
 

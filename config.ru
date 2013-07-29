@@ -1,34 +1,30 @@
-class EnvironmentOutput
+require 'haml'
 
-  def initialize(app)
-    @app = app
+class MyFramework
+  attr_accessor :response
+
+  def initialize
+    @response = []
+  end
+
+  def get(template, locals)
+    template = File.open("views/#{template}.haml").read
+    engine = Haml::Engine.new(template)
+    @response = [ engine.render(Object.new, locals) ]
   end
 
   def call(env)
-    p @app
-    out = ENV.to_a.reduce([]) { |x, y| x += [ "<li> #{y[0]} => #{y[1]}" ] }
-    unless @app.nil? 
-      code, header, body = @app.call(env)
-      out = body + out
-      return [code, header, out ] 
-    end
-    return [ "200", { "Content-Type" => "text/html"}, out ]
+    [ "200", { "Content-type" => "text/html" }, @response ]
   end
 end
 
 require './haiku'
-require 'haml'
+class MyApp < MyFramework
 
-class MyApp 
-  def call(env)
-    poem  = Haiku.new.random
-    template = File.open("views/index.haml").read
-    engine = Haml::Engine.new(template)
-    out = engine.render(Object.new, :poem => poem)
-    puts "POEM:\n#{out}"
-    [ "200", { "Content-type" => "text/html" }, [ out ] ]
+  def initialize
+    get("index", :poem => Haiku.new.random)
   end
+
 end
 
-use EnvironmentOutput
 run MyApp.new
