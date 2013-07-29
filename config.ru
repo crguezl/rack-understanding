@@ -1,24 +1,6 @@
-require 'haml'
-
-class MyFramework
-  attr_accessor :response
-
-  def initialize
-    @response = []
-  end
-
-  def get(template, locals)
-    template = File.open("views/#{template}.haml").read
-    engine = Haml::Engine.new(template)
-    @response = [ engine.render(Object.new, locals) ]
-  end
-
-  def call(env)
-    [ "200", { "Content-type" => "text/html" }, @response ]
-  end
-end
-
+require './my_framework'
 require './haiku'
+
 class MyApp < MyFramework
 
   def initialize
