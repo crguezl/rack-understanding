@@ -7,7 +7,7 @@ class MyFramework
     @response = []
   end
 
-  def get(template, locals)
+  def haml(template, locals)
     template = File.open("views/#{template}.haml").read
     engine = Haml::Engine.new(template)
     @response = [ engine.render(Object.new, locals) ]
